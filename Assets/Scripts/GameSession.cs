@@ -12,36 +12,23 @@ public class GameSession : MonoBehaviour
     [SerializeField] bool _allowSaving;
 
     Timer _timer;
-
+    MyTime _longestTime;
     SaveManager _saveManager;
     int _score = 0;
-
     int _highScore = 0;
-
     int _previousHighscore = 0;
-
-    int[] _longestTime = new int[3];
-
     bool _playerIsAlive = true;
-
 
     public int Score => _score;
     public int HighScore => _highScore;
-
     public int PreviousHighscore => _previousHighscore;
-    public int[] LongestTime => _longestTime;
-
-    public string FormattedLongestTime => string.Format("{2}:{1}.{0}", 
-                                                        _longestTime[0], 
-                                                        FormatTimeValue(_longestTime[1]), 
-                                                        FormatTimeValue(_longestTime[2]));
-
+    public MyTime LongestTime => _longestTime;
     public bool PlayerIsAlive {get => _playerIsAlive; set => _playerIsAlive = value; }
     
     void Awake() {
         _timer = FindObjectOfType<Timer>();
         _saveManager = FindObjectOfType<SaveManager>();
-        //Debug.Log(_saveManager.CurrentSave);
+        _longestTime = new MyTime();
 
         int numGameSessions = FindObjectsByType<GameSession>(FindObjectsSortMode.None).Length;
         if(numGameSessions > 1) {
@@ -53,7 +40,7 @@ public class GameSession : MonoBehaviour
     }
 
     void Start() {
-        SetUp();
+        //SetUp();
         UpdateHighScoreUI();
     }
 
@@ -69,14 +56,14 @@ public class GameSession : MonoBehaviour
 
     public void UpdateLongestTime(int[] time) {
         int index = time.Length-1;
-        while(time[index] == _longestTime[index]) {
+        while(time[index] == _longestTime.Values[index]) {
             if(index == 0) return;
             index--;
         }
 
-        if(time[index] > _longestTime[index]) {
+        if(time[index] > _longestTime.Values[index]) {
             for(int i = 0; i < time.Length; i++){
-                _longestTime[i] = time[i];
+                _longestTime.Values[i] = time[i];
             }
             _timer.TimerText.color = _personalRecordColor;
         }
@@ -84,41 +71,36 @@ public class GameSession : MonoBehaviour
 
     public void SaveGame() {
         if(!_allowSaving) { return; }
-        _saveManager.SaveFile(new Save(_highScore, _longestTime));
+        _saveManager.SaveFile(new Save(_highScore, _longestTime.Values));
     }
 
     public void LoadState(Save save) {
         _highScore = save.Highscore;
         _previousHighscore = _highScore;
-        _longestTime = save.LongestRun;
+        _longestTime.Values = save.LongestRun;
     }
 
-    void SaveLongestTime() {
-        string[] timeKeys = {"Deciseconds", "Seconds", "Minutes"};
-        for(int i = 0; i < timeKeys.Length; i++) {
-            PlayerPrefs.SetInt(timeKeys[i], _longestTime[i]);
-        }
-    }
+    // void SaveLongestTime() {
+    //     string[] timeKeys = {"Deciseconds", "Seconds", "Minutes"};
+    //     for(int i = 0; i < timeKeys.Length; i++) {
+    //         PlayerPrefs.SetInt(timeKeys[i], _longestTime.Values[i]);
+    //     }
+    // }
 
-    void LoadLongestTime() {
-        string[] timeKeys = {"Deciseconds", "Seconds", "Minutes"};
-        for (int i = 0; i < timeKeys.Length; i++)
-        {
-            _longestTime[i] = PlayerPrefs.GetInt(timeKeys[i]);
-        }
+    // void LoadLongestTime() {
+    //     string[] timeKeys = {"Deciseconds", "Seconds", "Minutes"};
+    //     for (int i = 0; i < timeKeys.Length; i++)
+    //     {
+    //         _longestTime.Values[i] = PlayerPrefs.GetInt(timeKeys[i]);
+    //     }
 
-        // TODO
-        // _longestTime = _saveManager.LongestRun;
-    }
-
-    void Restart() {
-        Destroy(gameObject);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    //     // TODO
+    //     // _longestTime = _saveManager.LongestRun;
+    // }
 
     void SetUp(){
         Health playerHealth = GameObject.Find("Player").GetComponent<Health>();
-        _healthSlider.value = _healthSlider.maxValue = playerHealth.HP;
+        _healthSlider.value = _healthSlider.maxValue = playerHealth.MaxHP;
     }
 
     void UpdateHighScoreUI() {
@@ -129,7 +111,5 @@ public class GameSession : MonoBehaviour
         
         _highScoreText.text = _highScore.ToString();
     }
-
-    string FormatTimeValue(int num) => (num < 10 ? "0" : "") + num;
 
 }
