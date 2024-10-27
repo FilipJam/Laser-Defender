@@ -3,24 +3,18 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] Transform _healthBar;
-    [SerializeField] float _health = 10;
+    [SerializeField] float _maxHealth = 10;
     [SerializeField] bool _isPlayer;
 
 
     CameraShake _cameraShake;
     EffectSpawner _effectSpawner;
-
     GameSession _gameSession;
-
     GameplayAudioPlayer _audioPlayer;
-
     LevelManager _levelManager;
-
-    //Shooter _shooter;
-
     PowerManager _powerManager;
 
-    float _maxHealth;
+    float _health;
     public float HP => _health;
     public float MaxHP => _maxHealth;
 
@@ -31,12 +25,24 @@ public class Health : MonoBehaviour
         _cameraShake = Camera.main.GetComponent<CameraShake>();
         _audioPlayer = FindObjectOfType<GameplayAudioPlayer>();
         _levelManager = FindObjectOfType<LevelManager>();
-        //_shooter = GetComponent<Shooter>();
         _powerManager = FindObjectOfType<PowerManager>();
     }
 
     void Start() {
-        _maxHealth = _health;
+        _health = _maxHealth;
+    }
+
+    public void UpgradeHealth(float value) {
+        _maxHealth = value;
+        _health = value;
+    }
+
+    public void Heal(float amount) {
+        _health += amount;
+        if(_health > _maxHealth) {
+            _health = _maxHealth;
+        }
+        UpdateHealthBar();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -56,19 +62,13 @@ public class Health : MonoBehaviour
 
     void UpdateHealthBar() {
         if(_healthBar == null) { return; }
+
         _healthBar.localScale = new Vector2(_health / _maxHealth, _healthBar.localScale.y);
         float posX = (1 - _healthBar.localScale.x) / 2;
         _healthBar.localPosition = new Vector2(posX, _healthBar.localPosition.y);
-        
     }
 
-    public void Heal(float amount) {
-        _health += amount;
-        if(_health > _maxHealth) {
-            _health = _maxHealth;
-        }
-        UpdateHealthBar();
-    }
+    
 
     void TakeDamage(int amount) {
         _health -= amount;
@@ -99,16 +99,4 @@ public class Health : MonoBehaviour
             _gameSession.AddScore(50);
         }
     }
-
-    // void DestroyGun() {
-    //     Gun gun = GetComponentInChildren<Gun>();
-    //     gun.enabled = false;
-    //     _shooter.UpdateWeapons();
-    //     Destroy(gun.gameObject);
-    // }
-
-
-
-
-
 }

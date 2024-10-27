@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 22296972947398504}
-  _health: 50
+  _maxHealth: 50
   _isPlayer: 0
 --- !u!114 &1812113256532334064
 MonoBehaviour:
