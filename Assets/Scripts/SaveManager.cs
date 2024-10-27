@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System.Linq;
-using System;
 
 public class SaveManager : MonoBehaviour
 {
@@ -21,6 +16,9 @@ public class SaveManager : MonoBehaviour
     void Awake() {
         ManageSingleton();
         _savePath = Application.persistentDataPath + "/save/";
+        if(!Directory.Exists(_savePath)) {
+            Directory.CreateDirectory(_savePath);
+        }
     }
 
     void Start() {

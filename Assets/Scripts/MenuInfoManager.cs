@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
-using JetBrains.Annotations;
 
 public class MenuInfoManager : MonoBehaviour
 {
@@ -27,7 +25,7 @@ public class MenuInfoManager : MonoBehaviour
     {
         PopulateDropDown();
         UpdateSaveInfoUI();
-        //UpdatePlayButton();
+        UpdatePlayButton();
     }
 
     public void OnLoad() {
@@ -72,7 +70,12 @@ public class MenuInfoManager : MonoBehaviour
     void PopulateDropDown() {
         string[] files = _saveManager.GetFilenames();
         _filesDropDown.ClearOptions();
-        _filesDropDown.AddOptions(files.ToList());
+
+        if(files.Length == 0) {
+            _filesDropDown.AddOptions(new List<string> {"Select File"});
+        } else {
+            _filesDropDown.AddOptions(files.ToList());
+        }
     }
 
     void UpdatePlayButton() {

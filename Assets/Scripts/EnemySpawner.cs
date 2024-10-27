@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,9 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _timeBetweenWaves = 1f;
 
     WaveConfigSO _currentWave;
-
     bool _isLooping = true;
-
+    
     public WaveConfigSO CurrentWave => _currentWave;
 
     void Start() {
@@ -23,7 +20,9 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator LoopWaves()
     {
         yield return new WaitForSeconds(1f);
-        do yield return SpawnWaves(); 
+        do {
+            yield return SpawnWaves(); 
+        }
         while(_isLooping);
     }
 
