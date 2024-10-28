@@ -1032,6 +1032,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8536185407713254776, guid: 548ad37470b4a934bae0337c48ed0f65, type: 3}
+      propertyPath: _difficultyScaling
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536185407713254776, guid: 548ad37470b4a934bae0337c48ed0f65, type: 3}
       propertyPath: _waves.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 0945482c1f5934e4baa5280b5f656ce2, type: 2}
