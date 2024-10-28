@@ -12,9 +12,9 @@ public class Regenerator : MonoBehaviour
         _gameSession = FindObjectOfType<GameSession>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // constantly regenerate
         RegenerateHealth();
     }
 

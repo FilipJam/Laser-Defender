@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74618a5a0f909154f9488f69ca895bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthBar: {fileID: 22296972947398504}
+  _healthBar: {fileID: 4801184892276691749}
   _maxHealth: 50
   _isPlayer: 0
 --- !u!114 &1812113256532334064
@@ -249,7 +249,6 @@ MonoBehaviour:
   _shootCooldown: 1
   _shootVariance: 0.3
   _minimumShootCooldown: 0.3
-  _canShoot: 1
 --- !u!1 &3016702099972642081
 GameObject:
   m_ObjectHideFlags: 0

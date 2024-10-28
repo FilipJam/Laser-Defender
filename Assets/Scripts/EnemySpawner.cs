@@ -56,6 +56,6 @@ public class EnemySpawner : MonoBehaviour
         // instantiate enemy at starting position of current wave
         Health enemyHealth = Instantiate(enemy, _currentWave.StartingPoint.position, enemy.transform.rotation, transform).GetComponent<Health>();
         // increase health depenging on difficulty level
-        enemyHealth.UpgradeHealth(enemyHealth.MaxHP * Mathf.Pow(_difficultyScaling, _difficultyLevel));
+        enemyHealth.ChangeHealth(enemyHealth.MaxHP * Mathf.Pow(_difficultyScaling, _difficultyLevel));
     }
 }
