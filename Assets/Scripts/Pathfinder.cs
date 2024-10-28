@@ -7,7 +7,7 @@ public class Pathfinder : MonoBehaviour
     WaveConfigSO _wave;
     
     List<Transform> _waypoints;
-    int _waveIndex = 0;
+    int _pathIndex = 0;
 
     private void Awake() {
         _enemySpawner = FindObjectOfType<EnemySpawner>();
@@ -16,22 +16,27 @@ public class Pathfinder : MonoBehaviour
     private void Start() {
         _wave = _enemySpawner.CurrentWave;
         _waypoints = _wave.GetWaypoints();
-        transform.position = _waypoints[_waveIndex++].position;
+        // move enemy to starting position of wave
+        transform.position = _waypoints[_pathIndex++].position;
     }
 
     private void Update() {
-        if(_waveIndex == _waypoints.Count) {
+        if(_pathIndex == _waypoints.Count) {
+            // destroy when reached the end of wave's path
             Destroy(gameObject);
             return;
         }
 
-        Vector3 targetPosition = _waypoints[_waveIndex].position;
+        // position of current waypoint in wave
+        Vector3 targetPosition = _waypoints[_pathIndex].position;
+        // amount to move per frame
         float deltaStep = _wave.MoveSpeed * Time.deltaTime;
+        // moves towards target position over multiple frames
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, deltaStep);
-        //Debug.Log("Moving towards");
 
+        // waits until enemy reaches target before going to next waypoint
         if(transform.position == targetPosition) {
-            _waveIndex++;
+            _pathIndex++;
         }
     }
 }
