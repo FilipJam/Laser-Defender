@@ -1,11 +1,11 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class PowerManager : MonoBehaviour
 {
-    [SerializeField] int _power = 2;
+    [SerializeField] int _power = 0;
     
     Shooter _shooter;
-
     GunManager _gunManager;
     
     void Awake() {
@@ -14,28 +14,31 @@ public class PowerManager : MonoBehaviour
     }
 
     void Start() {
-        AddPower(0);
+        // equips guns at initial power level
+        SwitchGuns();
     }
 
     public void AddPower(int amount) {
+        // changes power level of guns
         _power = Mathf.Clamp(_power + amount, 0, _gunManager.MaxPower);
-        ChangeGuns();
+        // equips new guns with new power level
+        SwitchGuns();
     }
 
-    void ChangeGuns() {
+    void SwitchGuns() {
+        // Destroy current guns
         DestroyGuns();
+        // Equip new guns
         EquipGuns();
     }
 
     void DestroyGuns() {
-        if(_shooter.GunHolder != null) {
-            _shooter.GunHolder.SetActive(false);
-            Destroy(_shooter.GunHolder);
-        }
+        Destroy(_shooter.GunHolder);
     }
 
     void EquipGuns() {
-        _shooter.GunHolder = Instantiate(_gunManager.GetGunsAt(_power), gameObject.transform);
-        _shooter.UpdateWeapons();
+        // spawns specified guns as children of this gameObject
+        _shooter.GunHolder = Instantiate(_gunManager.GetGunsAt(_power), transform);
+        _shooter.PrepareWeapons();
     }
 }
