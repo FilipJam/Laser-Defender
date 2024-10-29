@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Regenerator : MonoBehaviour
 {
-    [SerializeField] float _regenerationRate = 1f;
+    [SerializeField] float _healthPercent = 1f;
     Health _playerHealth;
     GameSession _gameSession;
     
@@ -14,14 +14,15 @@ public class Regenerator : MonoBehaviour
 
     void Update()
     {
-        // constantly regenerate
+        // constant regeneration
         RegenerateHealth();
     }
 
     void RegenerateHealth() {
-        if(_playerHealth.HP < _playerHealth.MaxHP) {
-            _playerHealth.Heal(_regenerationRate * Time.deltaTime);
-            _gameSession.SetHealthUI(_playerHealth.HP, _playerHealth.MaxHP);
-        }
+        // amount of health equivelant to specified percent out of total health
+        float regenerationRate = _healthPercent * _playerHealth.MaxHP;
+        // multiply by Time.deltaTime so healing is consistent regardless of FPS
+        _playerHealth.Heal(regenerationRate * Time.deltaTime);
+        _gameSession.SetHealthUI(_playerHealth.HP, _playerHealth.MaxHP);
     }
 }
