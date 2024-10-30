@@ -7,4 +7,4 @@ The goal is to score as high as you can.
 The game has a save system that can store many save files that record highest score and longest survival time.
 
 ## How to Play
-Download zip folder or clone the repo. The built game is in ```/Deployed/``` as ```'Laser Defender.exe'```. Run the file and enjoy the game!
+Download zip folder or clone the repo. The built game is in ```/Deployed/Windoes/``` as ```'Laser Defender.exe'```. Run the file and enjoy the game!
