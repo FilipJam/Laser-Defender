@@ -139,7 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpeed: 10
   _lifespan: 1.5
-  _turnRate: 50
 --- !u!114 &-7846505631461837297
 MonoBehaviour:
   m_ObjectHideFlags: 0

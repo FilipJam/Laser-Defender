@@ -497,11 +497,6 @@ MonoBehaviour:
   _shakeDuration: 0.3
   _shakeMagnitude: 0.2
   _shakeInterval: 0.01
---- !u!1 &552739731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3317721546143945938, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-  m_PrefabInstance: {fileID: 4490086405698472079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &986223275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,15 +797,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5723622403769781792, guid: e09d042ef9625b8469c57208d4612359, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 185.49632
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5723622403769781792, guid: e09d042ef9625b8469c57208d4612359, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 315.2988
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5723622403769781792, guid: e09d042ef9625b8469c57208d4612359, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0279056
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5723622403769781792, guid: e09d042ef9625b8469c57208d4612359, type: 3}
       propertyPath: m_LocalRotation.w
@@ -849,18 +844,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7316766442775250207, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-      propertyPath: _health
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: -7316766442775250207, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-      propertyPath: _maxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925948190121274393, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4490086404067673536, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -908,14 +891,6 @@ PrefabInstance:
     - target: {fileID: 4490086404067673539, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490086404067673564, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-      propertyPath: _gunHolder
-      value: 
-      objectReference: {fileID: 552739731}
-    - target: {fileID: 7927084907053045464, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}
-      propertyPath: _power
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1844d5b7bae10b745bafa80183908d92, type: 3}

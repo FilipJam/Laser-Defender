@@ -17,8 +17,11 @@ public class PowerUp : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        // check if colliding with player
         if(LayerMask.LayerToName(other.gameObject.layer) == "Player") {
+            // increases the amount of guns attached to player
             _powerManager.AddPower(1);
+            // destroy power up once collected
             Destroy(gameObject);
         }
     }

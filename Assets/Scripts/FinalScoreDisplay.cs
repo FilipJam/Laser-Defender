@@ -3,7 +3,6 @@ using TMPro;
 
 public class FinalScoreDisplay : MonoBehaviour
 {
-
     GameSession _gameSession;
 
     void Awake() {
@@ -11,13 +10,15 @@ public class FinalScoreDisplay : MonoBehaviour
     }
     void Start()
     {
-        string displayText = "You Scored:\n" + (_gameSession?.Score ?? 0) + "\n";
-        if(_gameSession != null && _gameSession.Score > _gameSession.PreviousHighscore) {
+        if(_gameSession == null) { return; }
+
+        string displayText = "You Scored:\n" + _gameSession.Score + "\n";
+        // add new line of text if score beat previous highscore
+        if(_gameSession.Score > _gameSession.PreviousHighscore) {
             displayText += "You beat your Highscore: " + _gameSession.PreviousHighscore;
         }
+
+        // updates display with modified text
         GetComponent<TextMeshProUGUI>().text = displayText;
     }
-    
-
-
 }

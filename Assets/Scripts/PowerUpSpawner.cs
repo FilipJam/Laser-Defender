@@ -20,14 +20,16 @@ public class PowerUpSpawner : MonoBehaviour
     }
     
     void Start()
-    {
+    {  
         _spawnRange = _spriteRenderer.bounds.extents.x;
         StartCoroutine(SpawnPowerUps());
     }
 
     IEnumerator SpawnPowerUps() {
+        // spawns power ups continuously
         while(true) {
             yield return new WaitForSeconds(GetRandomSpawnTime());
+            // spawn at random time in random position
             Instantiate(_powerUp, GetRandomSpawnPosition(), Quaternion.identity);
         }
     }

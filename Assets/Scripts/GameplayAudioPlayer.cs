@@ -16,14 +16,19 @@ public class GameplayAudioPlayer : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] float _explosionVolume = 1f;
 
     public void PlayShootingClip() {
-        AudioSource.PlayClipAtPoint(_shootingClip, Camera.main.transform.position, _shootingVolume);
+        PlayClipFromCamera(_shootingClip, _shootingVolume);
     }
 
     public void PlayImpactClip() {
-        AudioSource.PlayClipAtPoint(_impactClip, Camera.main.transform.position, _impactVolume);
+        PlayClipFromCamera(_impactClip, _impactVolume);
     }
 
     public void PlayExplosionClip() {
-        AudioSource.PlayClipAtPoint(_explosionClip, Camera.main.transform.position, _explosionVolume);
+        PlayClipFromCamera(_explosionClip, _explosionVolume);
+    }
+
+    // plays clip at main camera's position
+    void PlayClipFromCamera(AudioClip clip, float volume) {
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, volume);
     }
 }

@@ -96,7 +96,7 @@ public class Health : MonoBehaviour
             // saves score and time now that the game is over
             _gameSession.SaveGame();
             // proceeds to the game over screen
-            _levelManager.LoadGameOver();
+            _levelManager.LoadDelayedGameOver();
         }
     }
     void HandleEnemyDeath() {

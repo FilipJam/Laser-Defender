@@ -1,7 +1,6 @@
 public static class StringResource 
 {
-    public static string HighScore => "highScore";
-    public static string LongestTime => "longestTime";
-
+    public static string FileExists => "file exists";
+    public static string SelectFile => "select file";
     public static string CurrentFile => "currentFile";
 }

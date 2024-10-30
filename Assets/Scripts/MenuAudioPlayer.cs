@@ -11,6 +11,4 @@ public class MenuAudioPlayer : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    
 }

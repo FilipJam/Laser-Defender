@@ -11,6 +11,11 @@ public class SpriteScroller : MonoBehaviour
 
     void Update()
     {
+        // scrolls over texture in a loop
+        Scroll();
+    }
+
+    void Scroll() {
         Vector2 offset = _scrollSpeed * Time.deltaTime;
         _material.mainTextureOffset += offset;
     }
